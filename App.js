@@ -3,16 +3,22 @@ import React from 'react';
 import {Alert} from "react-native";
 import Loading from "./Loading";
 import * as Location from "expo-location";
+import axios from "axios";
 
-
+const API_KEY = "0475b1dd077f2013ecc5c072b933ff84";
 export default class App extends React.Component {
   state = {
     isLoading: true
   };
+  getWeather = async(latitude,longitude) => {
+    const { data } = axios.get(`api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`);
+    console.log(data);
+  }
   getLocation = async() =>{
     try{
       await Location.requestForegroundPermissionsAsync();
       const { coords: { latitude, longitude} } = await Location.getCurrentPositionAsync();
+      this.getWeather(latitude, longitude);
       this.setState({isLoading:false});
     }
     catch (error){
