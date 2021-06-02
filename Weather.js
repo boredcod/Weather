@@ -1,22 +1,85 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, StatusBar} from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 
-export default function Weather({temp}){
+const weatherOptions = {
+    Haze : {
+        iconName: "weather-hail",
+        gradient: ["#bdc3c7","#2c3e50"]
+    },
+    Thunderstorm :{
+        iconName: "weather-lightning-rainy",
+        gradient: ["#bdc3c7","#2c3e50"]
+    },
+    Drizzle: {
+        iconName: "weather-rainy",
+        gradient: ["#bdc3c7","#2c3e50"]
+    },
+    Rain: {
+        iconName: "weather-pouring",
+        gradient: ["#bdc3c7","#2c3e50"]
+    },
+    Snow: { 
+        iconName: "weather-snowy",
+        gradient: ["#ECE9E6","#FFFFFF"]
+    },
+    Clear: {
+        iconName: "weather-sunny",
+        gradient: ["#2980B9","#FFFFFF"]
+    },
+    Clouds: {
+        iconName: "weather-cloudy",
+        gradient: ["#ADA996","#EAEAEA"]
+    },
+    Mist: {
+        iconName: "weather-fog",
+        gradient : ["#E0EAFC", "#CFDEF3"]
+    },
+    Smoke: {
+        iconName: "alert",
+        gradient: ["#bdc3c7","#2c3e50"]
+    },
+    Dust: {
+        iconName: "alert",
+        gradient: ["#CCCCB2","#757519"]
+    },
+    Fog: {
+        iconName: "weather-fog",
+        gradient: ["#bdc3c7","#2c3e50"]
+    },
+    Sand: {
+        iconName: "alert",
+        gradient: ["#CCCCB2","#757519"]
+    },
+    Ash: {
+        iconName: "alert",
+        gradient: ["#CCCCB2","#757519"]
+    },
+    Tornado: {
+        iconName: "weather-tornado",
+        gradient: ["#bdc3c7","#2c3e50"]
+    }
+};
+
+export default function Weather({temp, condition, city}){
     return (
-    <View style = {styles.container}>
-        
-        <View style = {styles.halfContainer}> 
-            <MaterialCommunityIcons name="weather-rainy" size={100} color="black" />
-            <Text style = {styles.temp}>{temp}</Text>
-        </View>
+        <LinearGradient
+        // Background Linear Gradient
+        colors={weatherOptions[condition].gradient}
+        style={styles.container}>
+            <View style = {styles.halfContainer}> 
+                <MaterialCommunityIcons name={weatherOptions[condition].iconName} size={100} color="white" />
+                <Text style = {styles.temp}>{condition}</Text>
+                <Text style = {styles.temp}>{temp}˚</Text>
+            </View>
 
-        <View style = {styles.halfContainer}>
-
-        </View>
+            <View style = {styles.halfContainer}>
+                <Text style = {styles.temp}>{city}</Text>
+            </View>
+        </LinearGradient>
         
-    </View>
     );
 }
 
@@ -34,7 +97,8 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     temp:{
-        fontSize: 36
+        fontSize: 36,
+        color: "white"
     },
     
     halfContainer: {

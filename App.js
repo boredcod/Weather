@@ -14,7 +14,7 @@ export default class App extends React.Component {
   getWeather = async(latitude,longitude) => {  
     const { data } = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=${API_KEY}&units=metric`);
     console.log(data);
-    this.setState({isLoading: false, condition: "Clear", temp: data.main.temp, condition: data.weather[0].main});
+    this.setState({isLoading: false, temp: data.main.temp, condition: data.weather[0].main, city: data.name});
   };
   getLocation = async() =>{
     try{
@@ -31,8 +31,8 @@ export default class App extends React.Component {
     this.getLocation();
   }
   render(){
-    const { isLoading, temp , condition} = this.state;
-    return (isLoading ? <Loading /> : <Weather temp = {Math.round(temp)} condition = {condition}/>);
+    const { isLoading, temp , condition, city} = this.state;
+    return (isLoading ? <Loading /> : <Weather temp = {Math.round(temp)} condition = {condition} city = {city}/>);
   }
 }
 
