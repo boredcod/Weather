@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { View, Text, StyleSheet, ScrollView, StatusBar} from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-
+import Popup from "./Pop";
 const weatherOptions = {
     Haze : {
         iconName: "weather-hail",
@@ -84,7 +84,7 @@ export default function Weather({temp, condition, city}){
                 <Text style = {styles.temp}>{city}</Text>
             </View>
             <View>
-                <Text style = {styles.temp}>PenisPenis</Text>
+                <Popup />
             </View>
             </ScrollView>
         </LinearGradient>
