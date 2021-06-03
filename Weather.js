@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, Text, StyleSheet, StatusBar} from "react-native";
+import { View, Text, StyleSheet, ScrollView, StatusBar} from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -65,10 +65,15 @@ const weatherOptions = {
 
 export default function Weather({temp, condition, city}){
     return (
+        
         <LinearGradient
         // Background Linear Gradient
         colors={weatherOptions[condition].gradient}
         style={styles.container}>
+            <ScrollView  contentContainerStyle={{
+                flex: 1,
+                justifyContent: 'space-between'
+            }}>
             <View style = {styles.halfContainer}> 
                 <MaterialCommunityIcons name={weatherOptions[condition].iconName} size={100} color="white" />
                 <Text style = {styles.temp}>{condition}</Text>
@@ -78,8 +83,12 @@ export default function Weather({temp, condition, city}){
             <View style = {styles.halfContainer}>
                 <Text style = {styles.temp}>{city}</Text>
             </View>
+            <View>
+                <Text style = {styles.temp}>PenisPenis</Text>
+            </View>
+            </ScrollView>
         </LinearGradient>
-        
+       
     );
 }
 
