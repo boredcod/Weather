@@ -83,8 +83,8 @@ export default function Weather({temp, condition, city}){
             <View style = {styles.halfContainer}>
                 <Text style = {styles.temp}>{city}</Text>
             </View>
-            <View>
-                <Popup />
+            <View style = {styles.halfContainer}>
+                <Popup temperature = {temp}/>
             </View>
             </ScrollView>
         </LinearGradient>
