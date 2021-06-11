@@ -63,7 +63,7 @@ const weatherOptions = {
     }
 };
 
-export default function Weather({temp, condition, city}){
+export default function Weather({temp, condition, city, temp_min, temp_max}){
     return (
         
         <LinearGradient
@@ -75,13 +75,18 @@ export default function Weather({temp, condition, city}){
                 justifyContent: 'space-between'
             }}>
             <View style = {styles.halfContainer}> 
-                <MaterialCommunityIcons name={weatherOptions[condition].iconName} size={100} color="white" />
-                <Text style = {styles.temp}>{condition}</Text>
-                <Text style = {styles.temp}>{temp}˚</Text>
-            </View>
-
-            <View style = {styles.halfContainer}>
-                <Text style = {styles.temp}>{city}</Text>
+                <View style = {styles.halfContainer}> 
+                    <MaterialCommunityIcons name={weatherOptions[condition].iconName} size={100} color="white" />
+                    <Text style = {styles.city}>{condition}</Text>
+                </View>
+                <View style = {styles.halfContainer}> 
+                    <Text style = {styles.city}>{city}</Text>
+                    <View style = {styles.horiContainer}>
+                        <Text style = {styles.temp}>Low: {temp_min}˚</Text>  
+                        <Text style = {styles.temp}>Current: {temp}˚</Text>
+                        <Text style = {styles.temp}>High: {temp_max}˚</Text>
+                    </View>
+                </View>
             </View>
             <View style = {styles.halfContainer}>
                 <Popup temperature = {temp}/>
@@ -106,13 +111,21 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     temp:{
+        fontSize: 20,
+        color: "white"
+    },
+    city:{
         fontSize: 36,
         color: "white"
     },
-    
     halfContainer: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center"
+    },
+
+    horiContainer: {
+        flex: 1,
+        flexDirection: "row"
     }
 });
