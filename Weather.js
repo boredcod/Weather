@@ -6,77 +6,62 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Popup from "./Pop";
 const weatherOptions = {
     Haze : {
-        iconName: "weather-hail",
-        gradient: ["#bdc3c7","#2c3e50"]
+        iconName: "weather-hail"
     },
     Thunderstorm :{
-        iconName: "weather-lightning-rainy",
-        gradient: ["#bdc3c7","#2c3e50"]
+        iconName: "weather-lightning-rainy"
     },
     Drizzle: {
-        iconName: "weather-rainy",
-        gradient: ["#bdc3c7","#2c3e50"]
+        iconName: "weather-rainy"
+
     },
     Rain: {
-        iconName: "weather-pouring",
-        gradient: ["#bdc3c7","#2c3e50"]
+        iconName: "weather-pouring"
     },
     Snow: { 
-        iconName: "weather-snowy",
-        gradient: ["#ECE9E6","#FFFFFF"]
+        iconName: "weather-snowy"
     },
     Clear: {
-        iconName: "weather-sunny",
-        gradient: ["#2980B9","#FFFFFF"]
+        iconName: "weather-sunny"
     },
     Clouds: {
-        iconName: "weather-cloudy",
-        gradient: ["#ADA996","#EAEAEA"]
+        iconName: "weather-cloudy"
     },
     Mist: {
-        iconName: "weather-fog",
-        gradient : ["#E0EAFC", "#CFDEF3"]
+        iconName: "weather-fog"
     },
     Smoke: {
-        iconName: "alert",
-        gradient: ["#bdc3c7","#2c3e50"]
+        iconName: "alert"
     },
     Dust: {
-        iconName: "alert",
-        gradient: ["#CCCCB2","#757519"]
+        iconName: "alert"
     },
     Fog: {
-        iconName: "weather-fog",
-        gradient: ["#bdc3c7","#2c3e50"]
+        iconName: "weather-fog"
     },
     Sand: {
-        iconName: "alert",
-        gradient: ["#CCCCB2","#757519"]
+        iconName: "alert"
     },
     Ash: {
-        iconName: "alert",
-        gradient: ["#CCCCB2","#757519"]
+        iconName: "alert"
     },
     Tornado: {
-        iconName: "weather-tornado",
-        gradient: ["#bdc3c7","#2c3e50"]
+        iconName: "weather-tornado"
     }
 };
 
 export default function Weather({temp, condition, city, temp_min, temp_max}){
     return (
         
-        <LinearGradient
-        // Background Linear Gradient
-        colors={weatherOptions[condition].gradient}
+        <View
         style={styles.container}>
-            <ScrollView  contentContainerStyle={{
+            <ScrollView contentContainerStyle={{
                 flex: 1,
                 justifyContent: 'space-between'
             }}>
-            <View style = {styles.halfContainer}> 
+            <View style = {styles.topContainer}> 
                 <View style = {styles.halfContainer}> 
-                    <MaterialCommunityIcons name={weatherOptions[condition].iconName} size={100} color="white" />
+                    <MaterialCommunityIcons name={weatherOptions[condition].iconName} size={100} color="black" />
                     <Text style = {styles.city}>{condition}</Text>
                 </View>
                 <View style = {styles.halfContainer}> 
@@ -92,7 +77,7 @@ export default function Weather({temp, condition, city, temp_min, temp_max}){
                 <Popup temperature = {temp}/>
             </View>
             </ScrollView>
-        </LinearGradient>
+        </View>
        
     );
 }
@@ -108,15 +93,22 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#dbc6c1"
+    },
+    topContainer:{
+        padding: 30,
+        flex: 1,
+        justifyContent: "center",
         alignItems: "center"
     },
     temp:{
         fontSize: 20,
-        color: "white"
+        color: "black"
     },
     city:{
         fontSize: 36,
-        color: "white"
+        color: "black"
     },
     halfContainer: {
         flex: 1,

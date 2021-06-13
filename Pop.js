@@ -1,7 +1,5 @@
 import React, { useState }from "react";
 import PropTypes from "prop-types";
-import Weather from "./Weather";
-import weatherOptions from "./Weather";
 import ReturnStatement from "./ReturnClothe";
 import { View, Text, StyleSheet, ScrollView, StatusBar, Modal, TouchableHighlight, Alert, Pressable} from "react-native";
 
